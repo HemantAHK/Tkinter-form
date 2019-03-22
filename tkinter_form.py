@@ -11,11 +11,11 @@ def call_back():
     a.append(button_checked2.get())
     a.append(text_coll.get())
     a.append(text_colll.get())
-    with open('database.csv', 'a', newline='') as csvfile:
+    with open('DataBase.csv', 'a', newline='') as csvfile:
         fieldnames = ['First_name', 'Last_name','Reg No','Email','Male','Female','college','Department']
         spamwriter = csv.DictWriter(csvfile, fieldnames=fieldnames)
         spamwriter.writerow({'First_name':a[0],'Last_name':a[1],'Reg No':a[2],'Email':a[3],'Male':a[4],'Female':a[5],'college':a[6],'Department':a[7]})
-    print("done...!!!")
+    print("DONE...!!!")
 roott = Tk()
 
 roott.title("Student's Details Form")
