@@ -1,5 +1,25 @@
 from tkinter import *
 import csv
+import re
+
+def validate_input(inp):
+    """ This Function is used to validate the input string weather it contains any special
+    If you type oter than Alphabets [a-zA-Z] Then it will Not Display you the character you typed in.
+    If you enter the Alphabets [a-zA-Z] then only it will display you the Entered input.
+     """
+    x = re.compile('[a-zA-Z]')
+    if(x.search(inp) == None):
+        print("String is Not Accepted")
+        return False
+    elif inp is "":
+        print("String is Accepted")
+        return True
+    else:
+        print("String is Accepted")
+        return True
+
+
+
 
 def call_back():
     a=[]
@@ -16,16 +36,22 @@ def call_back():
         spamwriter = csv.DictWriter(csvfile, fieldnames=fieldnames)
         spamwriter.writerow({'First_name':a[0],'Last_name':a[1],'Reg No':a[2],'Email':a[3],'Male':a[4],'Female':a[5],'college':a[6],'Department':a[7]})
     print("DONE...!!!")
-roott = Tk()
 
+
+roott = Tk()
 roott.title("Student's Details Form")
+
+validate=roott.register(validate_input)
+
 Label(roott, text="First Name:").grid(row=0, column=0)
 text_fn=StringVar()
-Entry(roott, width=30, textvariable=text_fn).grid(row=0, column=1, columnspan=9)
+Entry(roott, width=30, textvariable=text_fn, validate="key", validatecommand=(validate, "%P")).grid(row=0, column=1, columnspan=9)
+
+
 
 Label(roott, text="Last Name:").grid(row=1, column=0)
 text_ln=StringVar()
-Entry(roott, width=30, textvariable=text_ln).grid(row=1, column=1, columnspan=9, padx=6, pady=6)
+Entry(roott, width=30, textvariable=text_ln, validate="key", validatecommand=(validate, "%P")).grid(row=1, column=1, columnspan=9, padx=6, pady=6)
 
 Label(roott, text="Redistered No:").grid(row=0, column=10)
 text_fan=StringVar()
